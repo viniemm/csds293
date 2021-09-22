@@ -12,18 +12,14 @@ public record Coordinate(BigDecimal x, BigDecimal y) implements Comparable<Coord
 		if (Objects.isNull(x) || Objects.isNull(y)) {
 			throw new NullPointerException("The values of x or y cannot be null");
 		}
-		else {
-			return this;
-		}
+		return this;
 	}
 
 	public static final Coordinate validate(Coordinate coordinate) {
 		if (Objects.isNull(coordinate)) {
 			throw new NullPointerException("The argument is null");
 		}
-		else {
-			return coordinate.validate();
-		}
+		return coordinate.validate();
 	}
 
 	@Override
