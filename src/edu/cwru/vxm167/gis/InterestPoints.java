@@ -3,7 +3,7 @@ package edu.cwru.vxm167.gis;
 import java.text.Bidi;
 import java.util.*;
 
-public class InterestPoints {
+public class InterestPoints<M> {
 
 	private final BiDimensionalMap<InterestPoint> points;
 
@@ -28,6 +28,10 @@ public class InterestPoints {
 			result.add(get(c));
 		}
 		return result;
+	}
+
+	public final long count(RectilinearRegion region, M marker){
+		for
 	}
 
 	@Override

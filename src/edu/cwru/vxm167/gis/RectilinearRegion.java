@@ -16,6 +16,26 @@ public final class RectilinearRegion {
 
 	private BiDimensionalMap<Rectangle> rectangleMap(){
 		BiDimensionalMap<Rectangle> grid = new BiDimensionalMap<>();
+		BiDimensionalMap<Rectangle>.Updater up = grid.getUpdater();
+		//for();
+		// TODO : I have no idea what this does. Documentation is vague on this. Discussion board slightly better.
 		return grid;
+	}
+
+	public boolean isOverlapping(){
+		boolean result = false;
+		// TODO : I have no idea what this does.
+		return result;
+	}
+
+	public static final RectilinearRegion of(Set<Rectangle>  rectangles) {
+		if(Objects.isNull(rectangles)) {
+			throw new IllegalArgumentException("Set of rectangles cannot be null");
+		}
+		RectilinearRegion rr  = new RectilinearRegion(rectangles);
+		if(!rr.isOverlapping()){
+
+		}
+		return rr;
 	}
 }
