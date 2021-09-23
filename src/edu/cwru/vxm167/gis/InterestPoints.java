@@ -1,6 +1,5 @@
 package edu.cwru.vxm167.gis;
 
-import java.text.Bidi;
 import java.util.*;
 
 public class InterestPoints<M> {
@@ -31,7 +30,9 @@ public class InterestPoints<M> {
 	}
 
 	public final long count(RectilinearRegion region, M marker){
-		for
+		long result = 0;
+		// TODO : Not sure what RectilinearRegion does here.
+		return result;
 	}
 
 	@Override

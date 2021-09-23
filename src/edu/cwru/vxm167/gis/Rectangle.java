@@ -1,7 +1,9 @@
 package edu.cwru.vxm167.gis;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public record Rectangle(Coordinate bottomLeft, Coordinate topRight) {
 
@@ -40,6 +42,23 @@ public record Rectangle(Coordinate bottomLeft, Coordinate topRight) {
 
 	public final BigDecimal bottom(){
 		return bottomLeft.y();
+	}
+
+	private Coordinate bottomRight() {
+		return new Coordinate(right(), bottom());
+	}
+
+	private Coordinate topLeft() {
+		return new Coordinate(left(), top());
+	}
+
+	final Set<Coordinate> allCorners(){
+		Set<Coordinate> result = new HashSet<>();
+		result.add(bottomLeft());
+		result.add(bottomRight());
+		result.add(topRight());
+		result.add(topLeft());
+		return result;
 	}
 
 	@Override

@@ -6,6 +6,10 @@ import java.math.*;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+/**
+ * @author Vinayak Mathur vxm167
+ * @param <T> generic object to be stored in the collection.
+ */
 public final class BiDimensionalMap<T> {
 
 	private final SortedMap<BigDecimal, SortedMap<BigDecimal, Collection<T>>> points = new TreeMap<>();
@@ -25,8 +29,6 @@ public final class BiDimensionalMap<T> {
 
 	BiDimensionalMap() {
 	}
-
-	;
 
 	public final Collection<T> get(BigDecimal x, BigDecimal y) {
 		if (Objects.isNull(x) || Objects.isNull(y)) {
