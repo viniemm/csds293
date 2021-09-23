@@ -42,7 +42,7 @@ public class InterestPoints {
 
 		public final boolean add(InterestPoint interestPoint){
 			InterestPoint.validate(interestPoint);
-			BiDimensionalMap.Updater up = points.new Updater();
+			BiDimensionalMap.Updater up = points.getUpdater();
 			up.setCoordinate(interestPoint.coordinate());
 			up.addValue(interestPoint.marker());
 			up.add();
