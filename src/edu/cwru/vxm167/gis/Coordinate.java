@@ -43,16 +43,14 @@ public record Coordinate(BigDecimal x, BigDecimal y) implements Comparable<Coord
 	public int compareTo(Coordinate c) {
 		BigDecimal x2 = c.x();
 		BigDecimal y2 = c.y();
-
+		int result = 0;
 		if (this.x.compareTo(x2) > 0 && this.y.compareTo(y2) > 0) {
-			return 1;
+			result = 1;
 		}
 		else if (this.x.compareTo(x2) <= 0 && this.y.compareTo(y2) <= 0) {
-			return -1;
+			result = -1;
 		}
-		else {
-			return 0;
-		}
+		return result;
 	}
 
 	/**
