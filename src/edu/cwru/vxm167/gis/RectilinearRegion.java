@@ -58,9 +58,7 @@ public final class RectilinearRegion {
 	}
 
 	public static final RectilinearRegion of(Set<Rectangle>  rectangles) {
-		if(Objects.isNull(rectangles)) {
-			throw new IllegalArgumentException("Set of rectangles cannot be null");
-		}
+		Objects.requireNonNull(rectangles, "set of rectangles cannot be null");
 		RectilinearRegion rr  = new RectilinearRegion(rectangles);
 		if(rr.isOverlapping()){
 			throw new IllegalArgumentException("Set of rectangles cannot intercept");

@@ -37,12 +37,8 @@ public record InterestPoint<M>(Coordinate coordinate, M marker) {
 	 * @return this class.
 	 */
 	public static final InterestPoint validate(InterestPoint interestpoint) {
-		if (Objects.isNull(interestpoint.coordinate())) {
-			throw new NullPointerException("The argument is null");
-		}
-		else {
-			return interestpoint.validate();
-		}
+		Objects.requireNonNull(interestpoint, "the interest point cannot be null");
+		return interestpoint.validate();
 	}
 
 	/**

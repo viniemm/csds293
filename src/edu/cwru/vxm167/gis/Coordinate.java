@@ -30,9 +30,7 @@ public record Coordinate(BigDecimal x, BigDecimal y) implements Comparable<Coord
 	 * @return
 	 */
 	public static final Coordinate validate(Coordinate coordinate) {
-		if (Objects.isNull(coordinate)) {
-			throw new NullPointerException("The argument is null");
-		}
+		Objects.requireNonNull(coordinate, "Coordinate cannot be null");
 		return coordinate.validate();
 	}
 

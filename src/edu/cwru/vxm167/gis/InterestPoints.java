@@ -11,6 +11,7 @@ public class InterestPoints<M> {
 	}
 
 	public final Collection<InterestPoint> get(Coordinate  coordinate){
+		Objects.requireNonNull(coordinate);
 		try {
 			return points.get(coordinate);
 		}
@@ -38,7 +39,7 @@ public class InterestPoints<M> {
 	@Override
 	public String toString() {
 		return "InterestPoints{" +
-			"points=" + points.toString() +
+			"points=" + points +
 			'}';
 	}
 

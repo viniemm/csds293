@@ -20,12 +20,8 @@ public record Rectangle(Coordinate bottomLeft, Coordinate topRight) {
 	}
 
 	public static final Rectangle validate(Rectangle rectangle) {
-		if (Objects.isNull(rectangle)) {
-			throw new NullPointerException("The argument is null");
-		}
-		else {
-			return rectangle.validate();
-		}
+		Objects.requireNonNull(rectangle, "Argument is null");
+		return rectangle.validate();
 	}
 
 	public final BigDecimal left(){
