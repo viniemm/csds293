@@ -7,7 +7,7 @@ public class InterestPoints<M> {
 
 	private final BiDimensionalMap<InterestPoint<M>> points;
 
-	private InterestPoints(Builder builder) {
+	private InterestPoints(Builder<M> builder) {
 		this.points = builder.points;
 	}
 
@@ -52,7 +52,7 @@ public class InterestPoints<M> {
 		private final BiDimensionalMap<InterestPoint<M>> points = new BiDimensionalMap<>();
 
 		public final boolean add(InterestPoint<M> interestPoint) {
-			InterestPoint.validate(interestPoint);
+			interestPoint.validate();
 			BiDimensionalMap<M>.Updater up = (BiDimensionalMap<M>.Updater) points.getUpdater();
 			up.setCoordinate(interestPoint.coordinate());
 			up.addValue(interestPoint.marker());
