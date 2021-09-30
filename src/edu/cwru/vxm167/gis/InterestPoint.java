@@ -1,4 +1,3 @@
-
 package edu.cwru.vxm167.gis;
 
 import org.jetbrains.annotations.NotNull;
@@ -8,8 +7,9 @@ import java.math.*;
 
 /**
  * InterestPoint is a record class that stores a coordinate and the marker at that specific coordinate.
- * @author Vinayak Mathur vxm167
+ *
  * @param <M> is the location marker
+ * @author Vinayak Mathur vxm167
  */
 public record InterestPoint<M>(Coordinate coordinate, M marker) {
 
@@ -20,6 +20,7 @@ public record InterestPoint<M>(Coordinate coordinate, M marker) {
 
 	/**
 	 * Makes sure that the x and y values of the coordinate and marker are all non-null. Throws an exception is either is.
+	 *
 	 * @return this class.
 	 */
 	public final InterestPoint<M> validate() {
@@ -33,6 +34,7 @@ public record InterestPoint<M>(Coordinate coordinate, M marker) {
 
 	/**
 	 * Makes sure that the x and y values of the coordinate and marker of interestpoint are non-null. Throws an exception is either is.
+	 *
 	 * @param interestpoint is the InterestPoint to be validated.
 	 * @return this class.
 	 */
@@ -43,6 +45,7 @@ public record InterestPoint<M>(Coordinate coordinate, M marker) {
 
 	/**
 	 * Checks whether the given marker is the same as the stored marker.
+	 *
 	 * @param marker is the marker that is to be checked in the marker field.
 	 * @return true if the given marker and stored marker are equal.
 	 */

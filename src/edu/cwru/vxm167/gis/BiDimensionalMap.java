@@ -1,4 +1,3 @@
-
 package edu.cwru.vxm167.gis;
 
 import java.util.*;
@@ -7,8 +6,8 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
- * @author Vinayak Mathur vxm167
  * @param <T> generic object to be stored in the collection.
+ * @author Vinayak Mathur vxm167
  */
 public final class BiDimensionalMap<T> {
 
@@ -44,7 +43,7 @@ public final class BiDimensionalMap<T> {
 		return points.keySet();
 	}
 
-	public final Set<BigDecimal> ySet (BigDecimal x) {
+	public final Set<BigDecimal> ySet(BigDecimal x) {
 		Objects.requireNonNull(x, "x cannot be null");
 		if (!points.containsKey(x)) {
 			throw new IllegalArgumentException("x is not in the map");
@@ -107,7 +106,7 @@ public final class BiDimensionalMap<T> {
 		return new Updater();
 	}
 
-	private final void compareInner(BigDecimal x,BigDecimal y,Rectangle rectangle, Updater up){
+	private final void compareInner(BigDecimal x, BigDecimal y, Rectangle rectangle, Updater up) {
 		if (y.compareTo(rectangle.bottom()) >= 0 &&
 			x.compareTo(rectangle.top()) < 0) {
 			up.setCoordinate(new Coordinate(x, y)).setValues(points.get(x).get(y)).add();
@@ -121,7 +120,7 @@ public final class BiDimensionalMap<T> {
 		for (BigDecimal x : xSet()) {
 			if (x.compareTo(rectangle.left()) >= 0 && x.compareTo(rectangle.right()) < 0) {
 				for (BigDecimal y : ySet(x)) {
-					compareInner(x,y,rectangle,up);
+					compareInner(x, y, rectangle, up);
 				}
 			}
 		}
@@ -150,7 +149,7 @@ public final class BiDimensionalMap<T> {
 		private Collection<T> values = collectionFactory.get();
 
 		public final Updater setX(BigDecimal x) {
-			Objects.requireNonNull(x,"x cannot be null");
+			Objects.requireNonNull(x, "x cannot be null");
 			this.x = x;
 			return this;
 		}

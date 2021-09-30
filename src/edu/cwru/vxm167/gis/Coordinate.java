@@ -1,4 +1,3 @@
-
 package edu.cwru.vxm167.gis;
 
 import java.util.*;
@@ -11,10 +10,11 @@ import java.math.BigDecimal;
 
 public record Coordinate(BigDecimal x, BigDecimal y) implements Comparable<Coordinate> {
 
-	public static final Coordinate ORIGIN = new Coordinate(BigDecimal.ZERO,BigDecimal.ZERO);
+	public static final Coordinate ORIGIN = new Coordinate(BigDecimal.ZERO, BigDecimal.ZERO);
 
 	/**
 	 * Makes sure that the x and y values of the coordinate are non-null. Throws an exception is either is.
+	 *
 	 * @return this class.
 	 */
 	public final Coordinate validate() {
@@ -26,6 +26,7 @@ public record Coordinate(BigDecimal x, BigDecimal y) implements Comparable<Coord
 
 	/**
 	 * Accepts an object of class Coordinate and validate that coordinate.
+	 *
 	 * @param coordinate is the coordinate to be validated.
 	 * @return
 	 */
@@ -36,6 +37,7 @@ public record Coordinate(BigDecimal x, BigDecimal y) implements Comparable<Coord
 
 	/**
 	 * compareTo is used to sort coordinates on the basis of the given condition.
+	 *
 	 * @param c is the coordinate with which to compare this coordinate.
 	 * @return
 	 */
@@ -46,8 +48,7 @@ public record Coordinate(BigDecimal x, BigDecimal y) implements Comparable<Coord
 		int result = 0;
 		if (this.x.compareTo(x2) > 0 && this.y.compareTo(y2) > 0) {
 			result = 1;
-		}
-		else if (this.x.compareTo(x2) <= 0 && this.y.compareTo(y2) <= 0) {
+		} else if (this.x.compareTo(x2) <= 0 && this.y.compareTo(y2) <= 0) {
 			result = -1;
 		}
 		return result;
