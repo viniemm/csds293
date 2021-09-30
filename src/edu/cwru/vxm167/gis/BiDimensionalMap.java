@@ -161,8 +161,6 @@ public final class BiDimensionalMap<T> {
 			return this;
 		}
 
-		// TODO Setter for collectionFactory and values???
-
 		public final Updater setCoordinate(Coordinate coordinate) {
 			Objects.requireNonNull(coordinate, "Coordinate cannot be null");
 			coordinate.validate();

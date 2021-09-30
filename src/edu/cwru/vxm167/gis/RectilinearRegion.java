@@ -19,38 +19,34 @@ public final class RectilinearRegion {
 		Set<BigDecimal> xCoord = new HashSet<>();
 		Set<BigDecimal> yCoord = new HashSet<>();
 		for(Rectangle rect : rectangles){
-			Set<Coordinate> corners = rect.allCorners();
-			for(Coordinate cor : corners){
-				xCoord.add(cor.x());
-				yCoord.add(cor.y());
-			}
+			yCoord.add(rect.bottom());
+			yCoord.add(rect.top());
+			xCoord.add(rect.left());
+			xCoord.add(rect.right());
 		}
 		BiDimensionalMap<Rectangle> grid = new BiDimensionalMap<>(xCoord, yCoord);
-		// TODO : What do I do with slide here?
-		BiDimensionalMap<Rectangle>.Updater up = grid.getUpdater();
+		for(Rectangle rect : rectangles){
+			BiDimensionalMap<Rectangle> newGridSlice = grid.slice(rect);
+			newGridSlice.addEverywhere(rect);
+		}
 		return grid;
 	}
 
-	private boolean checkBounds(BigDecimal upper, BigDecimal lower, BigDecimal toTest){
-		return toTest.compareTo(lower)>=0 && toTest.compareTo(upper)<=0;
+	private boolean checkInside(Rectangle box, Rectangle toTest){
+		for(Coordinate corner : toTest.allCorners()){
+			if(box.bottomLeft().compareTo(corner) <=0 && box.topRight().compareTo(corner) >= 0){
+				return true;
+			}
+		}
+		return false;
 	}
 
-	private boolean checkInside(Rectangle box, Coordinate toTest){
-		return checkBounds(box.left(), box.right(), toTest.x()) && checkBounds(box.bottom(), box.top(), toTest.y());
-	}
-
-	// TODO : Implement this with Coordinate.compareTo()
 	public boolean isOverlapping(){
 		boolean result = false;
 		for(Rectangle rectangle : rectangles){
 			for(Rectangle toTest : rectangles){
 				if(!Objects.equals(rectangle, toTest)){
-					for(Coordinate corner : toTest.allCorners()){
-						if(checkInside(rectangle,corner)){
-							result = true;
-							break;
-						}
-					}
+					result = checkInside(rectangle,toTest);
 				}
 			}
 		}

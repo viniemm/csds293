@@ -1,16 +1,17 @@
 package edu.cwru.vxm167.gis;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class InterestPoints<M> {
 
-	private final BiDimensionalMap<InterestPoint> points;
+	private final BiDimensionalMap<InterestPoint<M>> points;
 
 	private InterestPoints(Builder builder){
 		this.points = builder.points;
 	}
 
-	public final Collection<InterestPoint> get(Coordinate  coordinate){
+	public final Collection<InterestPoint<M>> get(Coordinate  coordinate){
 		Objects.requireNonNull(coordinate);
 		try {
 			return points.get(coordinate);
@@ -21,9 +22,9 @@ public class InterestPoints<M> {
 		}
 	}
 
-	public final List<Collection<InterestPoint>> interestPoints(){
+	public final List<Collection<InterestPoint<M>>> interestPoints(){
 		List<Coordinate> sortedCoordinates = points.coordinateSet();
-		List<Collection<InterestPoint>> result = new ArrayList<>();
+		List<Collection<InterestPoint<M>>> result = new ArrayList<>();
 		for(Coordinate c:sortedCoordinates){
 			result.add(get(c));
 		}
@@ -32,7 +33,12 @@ public class InterestPoints<M> {
 
 	public final long count(RectilinearRegion region, M marker){
 		long result = 0;
-		// TODO : Not sure what RectilinearRegion does here.
+		Predicate<InterestPoint<M>> predicate = x -> x.hasMarker(marker);
+
+		for(Rectangle rectangle : region.getRectangles()){
+			BiDimensionalMap<InterestPoint<M>> bd = points.slice(rectangle);
+			result+=bd.collectionSize(predicate);
+		}
 		return result;
 	}
 
@@ -43,20 +49,20 @@ public class InterestPoints<M> {
 			'}';
 	}
 
-	public static class Builder{
-		private final BiDimensionalMap<InterestPoint> points = new BiDimensionalMap<>();
+	public static class Builder<M>{
+		private final BiDimensionalMap<InterestPoint<M>> points = new BiDimensionalMap<>();
 
-		public final boolean add(InterestPoint interestPoint){
+		public final boolean add(InterestPoint<M> interestPoint){
 			InterestPoint.validate(interestPoint);
-			BiDimensionalMap.Updater up = points.getUpdater();
+			BiDimensionalMap<M>.Updater up = (BiDimensionalMap<M>.Updater) points.getUpdater();
 			up.setCoordinate(interestPoint.coordinate());
 			up.addValue(interestPoint.marker());
 			up.add();
 			return true;
 		}
 
-		public final InterestPoints  build(){
-			return new InterestPoints(this);
+		public final InterestPoints<M>  build(){
+			return new InterestPoints<M>(this);
 		}
 	}
 }
