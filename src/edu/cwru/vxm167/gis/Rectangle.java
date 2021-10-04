@@ -13,34 +13,30 @@ public record Rectangle(Coordinate bottomLeft, Coordinate topRight) {
 
 		int xVal = bottomLeft.x().compareTo(topRight.x());
 		int yVal = bottomLeft.y().compareTo(topRight.y());
-		if(xVal<=0 && yVal<0){
+		if (xVal <= 0 && yVal < 0) {
 			return this;
 		}
 		throw new IllegalArgumentException("Illegal values of bottom left and top right");
 	}
 
 	public static final Rectangle validate(Rectangle rectangle) {
-		if (Objects.isNull(rectangle)) {
-			throw new NullPointerException("The argument is null");
-		}
-		else {
-			return rectangle.validate();
-		}
+		Objects.requireNonNull(rectangle, "Argument is null");
+		return rectangle.validate();
 	}
 
-	public final BigDecimal left(){
+	public final BigDecimal left() {
 		return bottomLeft.x();
 	}
 
-	public final BigDecimal right(){
+	public final BigDecimal right() {
 		return topRight.x();
 	}
 
-	public final BigDecimal top(){
+	public final BigDecimal top() {
 		return topRight.y();
 	}
 
-	public final BigDecimal bottom(){
+	public final BigDecimal bottom() {
 		return bottomLeft.y();
 	}
 
@@ -52,7 +48,7 @@ public record Rectangle(Coordinate bottomLeft, Coordinate topRight) {
 		return new Coordinate(left(), top());
 	}
 
-	final Set<Coordinate> allCorners(){
+	final Set<Coordinate> allCorners() {
 		Set<Coordinate> result = new HashSet<>();
 		result.add(bottomLeft());
 		result.add(bottomRight());
@@ -64,10 +60,10 @@ public record Rectangle(Coordinate bottomLeft, Coordinate topRight) {
 	@Override
 	public String toString() {
 		String result = "";
-		result += "topLeft : "+"("+top().toPlainString()+","+left().toPlainString()+")"
-			+"topRight : "+"("+top().toPlainString()+","+right().toPlainString()+")\n";
-		result += "bottomLeft : "+"("+bottom().toPlainString()+","+left().toPlainString()+")"
-			+"bottomRight : "+"("+bottom().toPlainString()+","+right().toPlainString()+")\n";
+		result += "topLeft : " + "(" + top().toPlainString() + "," + left().toPlainString() + ")"
+			+ "topRight : " + "(" + top().toPlainString() + "," + right().toPlainString() + ")\n";
+		result += "bottomLeft : " + "(" + bottom().toPlainString() + "," + left().toPlainString() + ")"
+			+ "bottomRight : " + "(" + bottom().toPlainString() + "," + right().toPlainString() + ")\n";
 		return result;
 	}
 }
