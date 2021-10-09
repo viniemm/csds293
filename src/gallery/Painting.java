@@ -15,6 +15,7 @@ public record Painting(Artist artist, BigDecimal price, BigDecimal size) impleme
 		return this;
 	}
 
+
 	/**
 	 * Accepts an object of class Painting and validate that Painting.
 	 *
@@ -55,7 +56,7 @@ public record Painting(Artist artist, BigDecimal price, BigDecimal size) impleme
 	/**
 	 * @return a simple String that describes the coordinate.
 	 */
-	public String toSimpleString() {
+	public String toString() {
 		String pricestr = this.price.toPlainString();
 		String sizestr = this.size.toPlainString();
 		return artist.toString()+", $"+pricestr+", "+sizestr;
