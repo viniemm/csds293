@@ -2,6 +2,7 @@ package gallery;
 
 import edu.cwru.vxm167.gis.InterestPoint;
 
+import java.awt.*;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -89,13 +90,19 @@ public class GalleryMap {
 		return this;
 	}
 
-	public SortedMap<Painting, Painting> validGallery() {
-		SortedMap<Painting, Painting> result = new TreeMap<>();
-		int max = 0;
-		for (Painting picasso : picassos) {
-			
+	private void findMap(Painting picasso, SortedMap<Painting, Painting>) {
+		for (Painting dali : gallery.get(picasso)) {
+
 		}
-		return result;
+	}
+
+	public Set<SortedMap<Painting, Painting>> validGallery() {
+		// Maps the Dalis to the Picassos
+		for (Painting picasso : picassos) {
+			gallery.get(picasso).add(null);
+		}
+		Set<SortedMap<Painting, Painting>> result = new HashSet<>();
+		int max = 0;
 	}
 
 	private boolean map(SortedSet<Painting> picassos, SortedSet<Painting> dalis) {
