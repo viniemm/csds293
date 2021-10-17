@@ -2,61 +2,19 @@ package gallery;
 
 import java.util.*;
 
-/**
- * The type Auction.
- */
-public class Auction {
-	private final List<Painting> picassos;
-	private final List<Painting> dalis;
-	private final GalleryMap galleryMap;
+public class Auction{
+	GalleryMap gallerymap;
+	SortedSet<Column> columns= new TreeSet<>();
 
-	/**
-	 * Dalis list.
-	 *
-	 * @return the list
-	 */
-	public List<Painting> dalis() {
-		return dalis;
+	public Auction(SortedSet<Painting> picassos, SortedSet<Painting> dalis) {
+		gallerymap = new GalleryMap(picassos,dalis);
+		columns = gallerymap.columns();
 	}
 
-	/**
-	 * Picassos list.
-	 *
-	 * @return the list
-	 */
-	public List<Painting> picassos() {
-		return picassos;
-	}
+	private boolean validateGallery(List<Column> gallery){
+		for(Column column : columns){
 
-	/**
-	 * Gallery map gallery map.
-	 *
-	 * @return the gallery map
-	 */
-	public GalleryMap galleryMap() {
-		return galleryMap;
-	}
-
-	/**
-	 * Instantiates a new Auction.
-	 *
-	 * @param picassos the picassos
-	 * @param dalis    the dalis
-	 */
-	public Auction(List<Painting> picassos, List<Painting> dalis) {
-		this.picassos = picassos;
-		this.dalis = dalis;
-		this.galleryMap = new GalleryMap(picassos, dalis);
-	}
-
-	/**
-	 * Start auction list.
-	 *
-	 * @return the list
-	 */
-	public Set<GalleryMap> startAuction() {
-
-		Set galleries = galleryMap.validGallery();
+		}
 	}
 
 }
