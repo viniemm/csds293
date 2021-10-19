@@ -2,8 +2,8 @@ package gallery;
 
 import java.util.Objects;
 
-public record Column(Painting picasso, Painting dali) implements Comparable<gallery.Column> {
-	public final Column validate() {
+public record Pair(Painting picasso, Painting dali) implements Comparable<Pair> {
+	public final Pair validate() {
 		Objects.requireNonNull(picasso, "Picasso cannot be null");
 		Objects.requireNonNull(dali, "Dali cannot be null");
 		if (!(picasso.compareSize(dali) < 0)){
@@ -12,17 +12,17 @@ public record Column(Painting picasso, Painting dali) implements Comparable<gall
 		return this;
 	}
 
-	public static final Column validate(Column column) {
-		Objects.requireNonNull(column, "Column cannot be null");
-		return column.validate();
+	public static final Pair validate(Pair pair) {
+		Objects.requireNonNull(pair, "Column cannot be null");
+		return pair.validate();
 	}
 
-	public boolean equals(Column c) {
+	public boolean equals(Pair c) {
 		return dali.equals(c.dali()) && picasso.equals(c.picasso());
 	}
 
 	@Override
-	public int compareTo(Column c) {
+	public int compareTo(Pair c) {
 		return (dali.comparePrice(c.dali()) + picasso.comparePrice(c.picasso())) / 2;
 	}
 
