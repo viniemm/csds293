@@ -7,6 +7,8 @@ public class Auction {
 	private final List<List<Pair>> validGalleries;
 
 	public Auction(SortedSet<Painting> picassos, SortedSet<Painting> dalis) {
+		Objects.requireNonNull(picassos, "The set of Picassos cannot be null");
+		Objects.requireNonNull(dalis, "The set of Dalis cannot be null");
 		GalleryMap galleryMap = new GalleryMap(picassos, dalis);
 		gallery = galleryMap.makeGallery();
 		validGalleries = allValidGalleries();
