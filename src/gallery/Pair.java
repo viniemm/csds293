@@ -1,13 +1,12 @@
 package gallery;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public record Pair(Painting picasso, Painting dali) implements Comparable<Pair> {
 	public final Pair validate() {
 		picasso.validate();
 		dali.validate();
-		if (!(picasso.compareSize(dali) < 0)){
+		if (!(picasso.compareSize(dali) < 0)) {
 			throw new IllegalArgumentException("The Dali behind has to be taller than the Picasso in front");
 		}
 		return this;
@@ -25,21 +24,23 @@ public record Pair(Painting picasso, Painting dali) implements Comparable<Pair> 
 	@Override
 	public int compareTo(Pair pair) {
 		validate(pair);
-		int result = 0;
-		Painting picasso = pair.picasso();
-		Painting dali = pair.dali();
-		double coef = Integer.sum(this.dali.comparePrice(dali),this.picasso.comparePrice(picasso))/2;
-
-		int comp =
-		if(equals(pair)){
+		if (equals(pair)) {
 			throw new IllegalArgumentException("Pair repetition");
 		}
-
-
+		Painting picasso = pair.picasso();
+		Painting dali = pair.dali();
+		int daliCoef = this.dali.comparePrice(dali);
+		int picassoCoef = this.picasso.comparePrice(picasso);
+		if (daliCoef * picassoCoef == -1) {
+			throw new IllegalArgumentException("Ordered incorrect");
+		}
+		int coef = daliCoef + picassoCoef;
+		coef = coef / Math.abs(coef);
+		return coef;
 	}
 
 	@Override
-	public String toString(){
-		return "P"+picasso.toString()+" : D"+dali.toString();
+	public String toString() {
+		return "P" + picasso.toString() + " : D" + dali.toString();
 	}
 }

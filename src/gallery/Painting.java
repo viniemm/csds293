@@ -1,6 +1,6 @@
 package gallery;
 
-import java.util.*;
+import java.util.Objects;
 import java.math.BigDecimal;
 
 /**
@@ -17,7 +17,7 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	public final Painting validate() {
 		Objects.requireNonNull(price);
 		Objects.requireNonNull(size);
-		if (price.compareTo(BigDecimal.ZERO) < 1 || size.compareTo(BigDecimal.ZERO) < 1){
+		if (price.compareTo(BigDecimal.ZERO) < 1 || size.compareTo(BigDecimal.ZERO) < 1) {
 			throw new IllegalArgumentException("Price or size cannot be 0 or less");
 		}
 		return this;
@@ -30,7 +30,7 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	 * @param painting is the painting to be validated.
 	 * @return the painting
 	 */
-	public static final Painting validate(Painting painting) {
+	public static Painting validate(Painting painting) {
 		Objects.requireNonNull(painting, "Painting cannot be null");
 		return painting.validate();
 	}
@@ -43,21 +43,10 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	@Override
 	public int compareTo(Painting painting) {
 		validate(painting);
-		BigDecimal price = painting.price();
-		BigDecimal size = painting.size();
-		int result = 0;
-		if (this.price.compareTo(price) > 0) {
-			result = 1;
-		} else if (this.price.compareTo(price) < 0) {
-			result = -1;
-		} else if (this.price.compareTo(price) == 0) {
-			if (this.size.compareTo(size) < 0) {
-				result = -1;
-			} else if (this.size.compareTo(size) > 0) {
-				result = 1;
-			}
+		if (comparePrice(painting) != 0) {
+			return comparePrice(painting);
 		}
-		return result;
+		return compareSize(painting);
 	}
 
 	public int comparePrice(Painting p) {
@@ -66,6 +55,7 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	}
 
 	public int compareSize(Painting p) {
+		validate(p);
 		return this.price.compareTo(p.size());
 	}
 
@@ -74,11 +64,11 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	 */
 	@Override
 	public String toString() {
-		return "($" + price.toPlainString() + "," + size.toPlainString() + ")";
+		return "($" + price.toPlainString() + "," + size.toPlainString() + "\")";
 	}
 
 	public boolean equals(Painting p) {
-		return price.equals(p.price()) && size.equals(p.size());
+		validate(p);
+		return compareTo(p) == 0;
 	}
-
 }

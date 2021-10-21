@@ -40,23 +40,47 @@ public class Auction {
 		return true;
 	}
 
+	private List<Pair> giveCombination(int i) {
+		List<Pair> candidate = new ArrayList<>();
+		String stri = String.valueOf(i);
+		for (int j = stri.length() - 1; j >= 0; j--) {
+			try {
+				if (!Objects.isNull(gallery.get(j))) {
+					candidate.add(gallery.get(j).get(stri.charAt(j)));
+				}
+			} catch (Exception ignored) {
+			}
+		}
+		return candidate;
+	}
+
 	private List<List<Pair>> allValidGalleries() {
+		Objects.requireNonNull(gallery, "No valid galleries");
 		List<List<Pair>> result = new ArrayList<>();
 		int i = (int) Math.pow(10, gallery.size() - 1);
 		while (i >= 0) {
-			List<Pair> candidate = new ArrayList<>();
-			String stri = String.valueOf(i);
-			for (int j = gallery.size() - 1; j >= 0; j--) {
-				try {
-					candidate.add(gallery.get(j).get(stri.charAt(j)));
-				} catch (Exception ignored) {
-				}
-			}
+			List<Pair> candidate = giveCombination(i);
 			if (validateOrder(candidate)) {
 				result.add(candidate);
 			}
 			i--;
 		}
 		return result;
+	}
+
+	public List<List<Pair>> validGalleries() {
+		return validGalleries;
+	}
+
+	public List<Pair> maxGallery() {
+		int max = 0;
+		List<Pair> res = new ArrayList<>();
+		for (List<Pair> gall : validGalleries) {
+			if (gall.size() > max) {
+				max = gall.size();
+				res = gall;
+			}
+		}
+		return res;
 	}
 }
