@@ -27,16 +27,12 @@ public record Pair(Painting picasso, Painting dali) implements Comparable<Pair> 
 		if (equals(pair)) {
 			throw new IllegalArgumentException("Pair repetition");
 		}
-		Painting picasso = pair.picasso();
-		Painting dali = pair.dali();
-		int daliCoef = this.dali.comparePrice(dali);
-		int picassoCoef = this.picasso.comparePrice(picasso);
+		int daliCoef = this.dali.comparePrice(pair.dali());
+		int picassoCoef = this.picasso.comparePrice(pair.picasso());
 		if (daliCoef * picassoCoef == -1) {
 			throw new IllegalArgumentException("Ordered incorrect");
 		}
-		int coef = daliCoef + picassoCoef;
-		coef = coef / Math.abs(coef);
-		return coef;
+		return (daliCoef + picassoCoef) / Math.abs(daliCoef + picassoCoef);
 	}
 
 	@Override

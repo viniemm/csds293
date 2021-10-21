@@ -68,7 +68,7 @@ public class Auction {
 		return result;
 	}
 
-	public List<List<Pair>> validGalleries() {
+	private List<List<Pair>> validGalleries() {
 		return validGalleries;
 	}
 
