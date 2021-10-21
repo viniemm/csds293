@@ -14,7 +14,7 @@ public class Auction {
 		validGalleries = allValidGalleries();
 	}
 
-	public List<Pair> longestGallery(){
+	public List<Pair> longestGallery() {
 		return validGalleries.get(maxIndex());
 	}
 
@@ -46,9 +46,9 @@ public class Auction {
 		while (i >= 0) {
 			List<Pair> candidate = new ArrayList<>();
 			String stri = String.valueOf(i);
-			for (int j = 1; j < gallery.size(); j++) {
+			for (int j = gallery.size() - 1; j >= 0; j--) {
 				try {
-					candidate.add(gallery.get(j).get(stri.charAt(j - 1)));
+					candidate.add(gallery.get(j).get(stri.charAt(j)));
 				} catch (Exception ignored) {
 				}
 			}

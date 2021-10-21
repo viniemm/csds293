@@ -10,9 +10,10 @@ public record GalleryMap(SortedSet<Painting> picassos, SortedSet<Painting> dalis
 			ArrayList<Pair> column = new ArrayList<>();
 			column.add(null);
 			for (Painting dali : dalis) {
-				if (picasso.size().compareTo(dali.size()) < 0) {
+				try {
 					column.add(new Pair(picasso, dali));
 				}
+				catch (IllegalArgumentException ignored){}
 			}
 			gallery.put(i++,column);
 		}

@@ -15,8 +15,10 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	 * @return the painting
 	 */
 	public final Painting validate() {
-		if (Objects.isNull(price) || Objects.isNull(size)) {
-			throw new NullPointerException("Arguments cannot be null");
+		Objects.requireNonNull(price);
+		Objects.requireNonNull(size);
+		if (price.compareTo(BigDecimal.ZERO) < 1 || size.compareTo(BigDecimal.ZERO) < 1){
+			throw new IllegalArgumentException("Price or size cannot be 0 or less");
 		}
 		return this;
 	}
@@ -36,12 +38,13 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	/**
 	 * compareTo is used to sort paintings on the basis of the given condition.
 	 *
-	 * @param p is the painting with which to compare this painting.
+	 * @param painting is the painting with which to compare this painting.
 	 */
 	@Override
-	public int compareTo(Painting p) {
-		BigDecimal price = p.price();
-		BigDecimal size = p.size();
+	public int compareTo(Painting painting) {
+		validate(painting);
+		BigDecimal price = painting.price();
+		BigDecimal size = painting.size();
 		int result = 0;
 		if (this.price.compareTo(price) > 0) {
 			result = 1;
@@ -58,6 +61,7 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	}
 
 	public int comparePrice(Painting p) {
+		validate(p);
 		return this.price.compareTo(p.price());
 	}
 
