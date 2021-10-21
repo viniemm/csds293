@@ -29,7 +29,7 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	 * @return the painting
 	 */
 	public static final Painting validate(Painting painting) {
-		Objects.requireNonNull(painting, "Coordinate cannot be null");
+		Objects.requireNonNull(painting, "Painting cannot be null");
 		return painting.validate();
 	}
 
@@ -55,6 +55,14 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 			}
 		}
 		return result;
+	}
+
+	public int comparePrice(Painting p) {
+		return this.price.compareTo(p.price());
+	}
+
+	public int compareSize(Painting p) {
+		return this.price.compareTo(p.size());
 	}
 
 	/**

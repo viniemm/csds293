@@ -2,61 +2,61 @@ package gallery;
 
 import java.util.*;
 
-/**
- * The type Auction.
- */
 public class Auction {
-	private final List<Painting> picassos;
-	private final List<Painting> dalis;
-	private final GalleryMap galleryMap;
+	private final SortedMap<Integer, List<Pair>> gallery;
+	private final List<List<Pair>> validGalleries;
 
-	/**
-	 * Dalis list.
-	 *
-	 * @return the list
-	 */
-	public List<Painting> dalis() {
-		return dalis;
+	public Auction(SortedSet<Painting> picassos, SortedSet<Painting> dalis) {
+		Objects.requireNonNull(picassos, "The set of Picassos cannot be null");
+		Objects.requireNonNull(dalis, "The set of Dalis cannot be null");
+		GalleryMap galleryMap = new GalleryMap(picassos, dalis);
+		gallery = galleryMap.makeGallery();
+		validGalleries = allValidGalleries();
 	}
 
-	/**
-	 * Picassos list.
-	 *
-	 * @return the list
-	 */
-	public List<Painting> picassos() {
-		return picassos;
+	public List<Pair> longestGallery(){
+		return validGalleries.get(maxIndex());
 	}
 
-	/**
-	 * Gallery map gallery map.
-	 *
-	 * @return the gallery map
-	 */
-	public GalleryMap galleryMap() {
-		return galleryMap;
+	public int maxIndex() {
+		int result = 0;
+		int i = 0;
+		for (List<Pair> l : validGalleries) {
+			if (l.size() > result) {
+				result = i;
+			}
+			i++;
+		}
+		return result;
 	}
 
-	/**
-	 * Instantiates a new Auction.
-	 *
-	 * @param picassos the picassos
-	 * @param dalis    the dalis
-	 */
-	public Auction(List<Painting> picassos, List<Painting> dalis) {
-		this.picassos = picassos;
-		this.dalis = dalis;
-		this.galleryMap = new GalleryMap(picassos, dalis);
+
+	private boolean validateOrder(List<Pair> gallery) {
+		for (int i = 0; i < gallery.size() - 1; i++) {
+			if (gallery.get(i).compareTo(gallery.get(i + 1)) > 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 
-	/**
-	 * Start auction list.
-	 *
-	 * @return the list
-	 */
-	public Set<GalleryMap> startAuction() {
-
-		Set galleries = galleryMap.validGallery();
+	private List<List<Pair>> allValidGalleries() {
+		List<List<Pair>> result = new ArrayList<>();
+		int i = (int) Math.pow(10, gallery.size() - 1);
+		while (i >= 0) {
+			List<Pair> candidate = new ArrayList<>();
+			String stri = String.valueOf(i);
+			for (int j = 1; j < gallery.size(); j++) {
+				try {
+					candidate.add(gallery.get(j).get(stri.charAt(j - 1)));
+				} catch (Exception ignored) {
+				}
+			}
+			if (validateOrder(candidate)) {
+				result.add(candidate);
+			}
+			i--;
+		}
+		return result;
 	}
-
 }
