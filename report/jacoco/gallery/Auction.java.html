@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Auction.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CSDS293</a> &gt; <a href="index.source.html" class="el_package">gallery</a> &gt; <span class="el_source">Auction.java</span></div><h1>Auction.java</h1><pre class="source lang-java linenums">package gallery;
+
+import java.util.*;
+
+public class Auction {
+	private final SortedMap&lt;Integer, List&lt;Pair&gt;&gt; gallery;
+	private final List&lt;List&lt;Pair&gt;&gt; validGalleries;
+
+<span class="nc" id="L9">	public Auction(SortedSet&lt;Painting&gt; picassos, SortedSet&lt;Painting&gt; dalis) {</span>
+<span class="nc" id="L10">		Objects.requireNonNull(picassos, &quot;The set of Picassos cannot be null&quot;);</span>
+<span class="nc" id="L11">		Objects.requireNonNull(dalis, &quot;The set of Dalis cannot be null&quot;);</span>
+<span class="nc" id="L12">		GalleryMap galleryMap = new GalleryMap(picassos, dalis);</span>
+<span class="nc" id="L13">		gallery = galleryMap.makeGallery();</span>
+<span class="nc" id="L14">		validGalleries = allValidGalleries();</span>
+<span class="nc" id="L15">	}</span>
+
+	public List&lt;Pair&gt; longestGallery() {
+<span class="nc" id="L18">		return validGalleries.get(maxIndex());</span>
+	}
+
+	public int maxIndex() {
+<span class="nc" id="L22">		int result = 0;</span>
+<span class="nc" id="L23">		int i = 0;</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">		for (List&lt;Pair&gt; l : validGalleries) {</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">			if (l.size() &gt; result) {</span>
+<span class="nc" id="L26">				result = i;</span>
+			}
+<span class="nc" id="L28">			i++;</span>
+<span class="nc" id="L29">		}</span>
+<span class="nc" id="L30">		return result;</span>
+	}
+
+
+	private boolean validateOrder(List&lt;Pair&gt; gallery) {
+<span class="nc bnc" id="L35" title="All 2 branches missed.">		for (int i = 0; i &lt; gallery.size() - 1; i++) {</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">			if (gallery.get(i).compareTo(gallery.get(i + 1)) &gt; 0) {</span>
+<span class="nc" id="L37">				return false;</span>
+			}
+		}
+<span class="nc" id="L40">		return true;</span>
+	}
+
+	private List&lt;Pair&gt; giveCombination(int i) {
+<span class="nc" id="L44">		List&lt;Pair&gt; candidate = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L45">		String stri = String.valueOf(i);</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">		for (int j = stri.length() - 1; j &gt;= 0; j--) {</span>
+			try {
+<span class="nc bnc" id="L48" title="All 2 branches missed.">				if (!Objects.isNull(gallery.get(j))) {</span>
+<span class="nc" id="L49">					candidate.add(gallery.get(j).get(stri.charAt(j)));</span>
+				}
+<span class="nc" id="L51">			} catch (Exception ignored) {</span>
+<span class="nc" id="L52">			}</span>
+		}
+<span class="nc" id="L54">		return candidate;</span>
+	}
+
+	private List&lt;List&lt;Pair&gt;&gt; allValidGalleries() {
+<span class="nc" id="L58">		Objects.requireNonNull(gallery, &quot;No valid galleries&quot;);</span>
+<span class="nc" id="L59">		List&lt;List&lt;Pair&gt;&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L60">		int i = (int) Math.pow(10, gallery.size() - 1);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">		while (i &gt;= 0) {</span>
+<span class="nc" id="L62">			List&lt;Pair&gt; candidate = giveCombination(i);</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">			if (validateOrder(candidate)) {</span>
+<span class="nc" id="L64">				result.add(candidate);</span>
+			}
+<span class="nc" id="L66">			i--;</span>
+<span class="nc" id="L67">		}</span>
+<span class="nc" id="L68">		return result;</span>
+	}
+
+	private List&lt;List&lt;Pair&gt;&gt; validGalleries() {
+<span class="nc" id="L72">		return validGalleries;</span>
+	}
+
+	public List&lt;Pair&gt; maxGallery() {
+<span class="nc" id="L76">		int max = 0;</span>
+<span class="nc" id="L77">		List&lt;Pair&gt; res = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">		for (List&lt;Pair&gt; gall : validGalleries) {</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">			if (gall.size() &gt; max) {</span>
+<span class="nc" id="L80">				max = gall.size();</span>
+<span class="nc" id="L81">				res = gall;</span>
+			}
+<span class="nc" id="L83">		}</span>
+<span class="nc" id="L84">		return res;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

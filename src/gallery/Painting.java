@@ -30,7 +30,7 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	 * @param painting is the painting to be validated.
 	 * @return the painting
 	 */
-	public static Painting validate(Painting painting) {
+	private Painting validate(Painting painting) {
 		Objects.requireNonNull(painting, "Painting cannot be null");
 		return painting.validate();
 	}
@@ -50,12 +50,14 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	}
 
 	public int comparePrice(Painting p) {
-		validate(p);
+		Objects.requireNonNull(p);
+		p.validate();
 		return this.price.compareTo(p.price());
 	}
 
 	public int compareSize(Painting p) {
-		validate(p);
+		Objects.requireNonNull(p);
+		p.validate();
 		return this.price.compareTo(p.size());
 	}
 
@@ -68,7 +70,8 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	}
 
 	public boolean equals(Painting p) {
-		validate(p);
+		Objects.requireNonNull(p);
+		p.validate();
 		return compareTo(p) == 0;
 	}
 }

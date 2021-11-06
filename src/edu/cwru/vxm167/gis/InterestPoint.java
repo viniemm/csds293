@@ -1,9 +1,7 @@
 package edu.cwru.vxm167.gis;
 
-import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
-import java.math.*;
+import java.util.Objects;
 
 /**
  * InterestPoint is a record class that stores a coordinate and the marker at that specific coordinate.

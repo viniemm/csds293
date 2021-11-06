@@ -7,114 +7,98 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-/** 
-* Painting Tester. 
-* 
-* @author <Authors name> 
-* @since <pre>Oct 26, 2021</pre> 
-* @version 1.0 
-*/ 
-public class PaintingTest { 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
-@Before
-public void before() throws Exception { 
-} 
+public class PaintingTest {
 
-@After
-public void after() throws Exception { 
-} 
+	long startTime;
 
-/** 
-* 
-* Method: validate()
-* 
-*/ 
-@Test (expected= NullPointerException.class)
-public void testValidate() throws Exception {
-	Painting painting = new Painting(new BigDecimal(0),new BigDecimal(0));
-	painting.validate();
+	@Before
+	public void before() {
+		System.out.println("Starting test");
+		this.startTime = System.currentTimeMillis();
+	}
+
+	@After
+	public void after() {
+		long elapsed = System.currentTimeMillis() - startTime;
+		System.out.println("Test complete. Elapsed time: " + elapsed);
+	}
+
+	/**
+	 * Method: validate()
+	 */
+
+	@Test
+	public void testValidate() {
+//
+		Painting painting = new Painting(new BigDecimal(3), new BigDecimal(2));
+		assertEquals(painting, painting.validate());
+
+		painting = new Painting(new BigDecimal(0), new BigDecimal(5));
+		assertThrows(IllegalArgumentException.class, painting::validate);
+
+		painting = new Painting(new BigDecimal(0), new BigDecimal(0));
+		assertThrows(IllegalArgumentException.class, painting::validate);
+
+	}
+
+	/**
+	 * Method: compareTo(Painting painting)
+	 */
+	@Test
+	public void testCompareTo() {
 //TODO: Test goes here... 
-}
+	}
 
-/** 
-* 
-* Method: validate(Painting painting) 
-* 
-*/ 
-@Test
-public void testValidatePainting() throws Exception { 
+	/**
+	 * Method: comparePrice(Painting p)
+	 */
+	@Test
+	public void testComparePrice() {
 //TODO: Test goes here... 
-} 
+	}
 
-/** 
-* 
-* Method: compareTo(Painting painting) 
-* 
-*/ 
-@Test
-public void testCompareTo() throws Exception { 
+	/**
+	 * Method: compareSize(Painting p)
+	 */
+	@Test
+	public void testCompareSize() {
 //TODO: Test goes here... 
-} 
+	}
 
-/** 
-* 
-* Method: comparePrice(Painting p) 
-* 
-*/ 
-@Test
-public void testComparePrice() throws Exception { 
+	/**
+	 * Method: toString()
+	 */
+	@Test
+	public void testToString() {
 //TODO: Test goes here... 
-} 
+	}
 
-/** 
-* 
-* Method: compareSize(Painting p) 
-* 
-*/ 
-@Test
-public void testCompareSize() throws Exception { 
+	/**
+	 * Method: equals(Painting p)
+	 */
+	@Test
+	public void testEquals() {
 //TODO: Test goes here... 
-} 
+	}
 
-/** 
-* 
-* Method: toString() 
-* 
-*/ 
-@Test
-public void testToString() throws Exception { 
+	/**
+	 * Method: price()
+	 */
+	@Test
+	public void testPrice() {
 //TODO: Test goes here... 
-} 
+	}
 
-/** 
-* 
-* Method: equals(Painting p) 
-* 
-*/ 
-@Test
-public void testEquals() throws Exception { 
+	/**
+	 * Method: size()
+	 */
+	@Test
+	public void testSize() {
 //TODO: Test goes here... 
-} 
-
-/** 
-* 
-* Method: price() 
-* 
-*/ 
-@Test
-public void testPrice() throws Exception { 
-//TODO: Test goes here... 
-} 
-
-/** 
-* 
-* Method: size() 
-* 
-*/ 
-@Test
-public void testSize() throws Exception { 
-//TODO: Test goes here... 
-} 
+	}
 
 
 } 
