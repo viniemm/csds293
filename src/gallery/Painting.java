@@ -52,13 +52,13 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	public int comparePrice(Painting p) {
 		Objects.requireNonNull(p);
 		p.validate();
-		return this.price.compareTo(p.price());
+		return this.price().compareTo(p.price());
 	}
 
 	public int compareSize(Painting p) {
 		Objects.requireNonNull(p);
 		p.validate();
-		return this.price.compareTo(p.size());
+		return this.price().compareTo(p.size());
 	}
 
 	/**
@@ -66,7 +66,7 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	 */
 	@Override
 	public String toString() {
-		return "($" + price.toPlainString() + "," + size.toPlainString() + "\")";
+		return "($" + price().toPlainString() + "," + size().toPlainString() + ")";
 	}
 
 	public boolean equals(Painting p) {

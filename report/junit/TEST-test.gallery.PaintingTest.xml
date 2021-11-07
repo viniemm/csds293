@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="vini-dell-7567" name="test.gallery.PaintingTest" skipped="0" tests="9" time="0.293" timestamp="2021-11-06T20:09:48">
+<testsuite errors="0" failures="0" hostname="vini-dell-7567" name="test.gallery.PaintingTest" skipped="0" tests="5" time="0.52" timestamp="2021-11-07T02:20:15">
   <properties>
     <property name="ant.library.dir" value="C:\Program Files (x86)\Apache\apache-ant-1.10.11\lib" />
     <property name="ant.file.type" value="file" />
@@ -18,7 +18,7 @@
     <property name="user.country" value="US" />
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-16.0.1\bin" />
     <property name="output.dir" value="output" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.gallery.PaintingTest skipNonTests=false filtertrace=false haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\vinay\Development\csds293\report\junit\TEST-test.gallery.PaintingTest.xml crashfile=C:\Users\vinay\Development\csds293\junitvmwatcher8963889668393064731.properties propsfile=C:\Users\vinay\Development\csds293\junit11213137485360470409.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.gallery.PaintingTest skipNonTests=false filtertrace=false haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\vinay\Development\csds293\report\junit\TEST-test.gallery.PaintingTest.xml crashfile=C:\Users\vinay\Development\csds293\junitvmwatcher2180478284311614991.properties propsfile=C:\Users\vinay\Development\csds293\junit7066665270169675149.properties" />
     <property name="jdk.debug" value="release" />
     <property name="ant.file.type.CSDS293" value="file" />
     <property name="sun.cpu.endian" value="little" />
@@ -26,7 +26,7 @@
     <property name="user.language" value="en" />
     <property name="sun.stderr.encoding" value="cp437" />
     <property name="java.specification.vendor" value="Oracle Corporation" />
-    <property name="_jacoco.agentFile" value="C:\Users\vinay\AppData\Local\Temp\jacocoagent132369330044008463.jar" />
+    <property name="_jacoco.agentFile" value="C:\Users\vinay\AppData\Local\Temp\jacocoagent13658546642792515300.jar" />
     <property name="java.version.date" value="2021-04-20" />
     <property name="java.home" value="C:\Program Files\Java\jdk-16.0.1" />
     <property name="basedir" value="C:\Users\vinay\Development\csds293" />
@@ -75,31 +75,19 @@
     <property name="java.class.version" value="60.0" />
     <property name="src.dir" value="src" />
   </properties>
-  <testcase classname="test.gallery.PaintingTest" name="testPrice" time="0.02" />
-  <testcase classname="test.gallery.PaintingTest" name="testSize" time="0.001" />
-  <testcase classname="test.gallery.PaintingTest" name="testValidatePainting" time="0.0" />
-  <testcase classname="test.gallery.PaintingTest" name="testCompareSize" time="0.001" />
-  <testcase classname="test.gallery.PaintingTest" name="testToString" time="0.0" />
+  <testcase classname="test.gallery.PaintingTest" name="testCompareToIllegalArgumentException" time="0.046" />
+  <testcase classname="test.gallery.PaintingTest" name="testToString" time="0.01" />
   <testcase classname="test.gallery.PaintingTest" name="testCompareTo" time="0.001" />
-  <testcase classname="test.gallery.PaintingTest" name="testValidate" time="0.049" />
-  <testcase classname="test.gallery.PaintingTest" name="testComparePrice" time="0.0" />
-  <testcase classname="test.gallery.PaintingTest" name="testEquals" time="0.001" />
+  <testcase classname="test.gallery.PaintingTest" name="testValidate" time="0.085" />
+  <testcase classname="test.gallery.PaintingTest" name="testEquals" time="0.003" />
   <system-out><![CDATA[Starting test
-Test complete. Elapsed time: 0
+Test complete. Elapsed time: 15
+Starting test
+Test complete. Elapsed time: 8
 Starting test
 Test complete. Elapsed time: 0
 Starting test
-Test complete. Elapsed time: 0
-Starting test
-Test complete. Elapsed time: 0
-Starting test
-Test complete. Elapsed time: 0
-Starting test
-Test complete. Elapsed time: 1
-Starting test
-Test complete. Elapsed time: 48
-Starting test
-Test complete. Elapsed time: 0
+Test complete. Elapsed time: 84
 Starting test
 Test complete. Elapsed time: 0
 ]]></system-out>
