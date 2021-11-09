@@ -11,7 +11,7 @@ import org.junit.After;
 * @since <pre>Oct 26, 2021</pre> 
 * @version 1.0 
 */ 
-public class PairTest { 
+public class  PairTest {
 
 @Before
 public void before() throws Exception { 
