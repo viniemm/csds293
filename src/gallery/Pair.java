@@ -12,27 +12,23 @@ public record Pair(Painting picasso, Painting dali) implements Comparable<Pair> 
 		return this;
 	}
 
-	public static Pair validate(Pair pair) {
+	private Pair validate(Pair pair) {
 		Objects.requireNonNull(pair, "Pair cannot be null");
 		return pair.validate();
 	}
 
-	public boolean equals(Pair c) {
-		return dali.equals(c.dali()) && picasso.equals(c.picasso());
+	public boolean equals(Pair p) {
+		return picasso.equals(p.picasso) && dali.equals(p.dali);
 	}
 
 	@Override
 	public int compareTo(Pair pair) {
 		validate(pair);
-		if (equals(pair)) {
-			throw new IllegalArgumentException("Pair repetition");
-		}
-		int daliCoef = this.dali.comparePrice(pair.dali());
-		int picassoCoef = this.picasso.comparePrice(pair.picasso());
-		if (daliCoef * picassoCoef == -1) {
-			throw new IllegalArgumentException("Ordered incorrect");
-		}
-		return (daliCoef + picassoCoef) / Math.abs(daliCoef + picassoCoef);
+//		if (equals(pair)) {
+//			throw new IllegalArgumentException("Pair repetition");
+//		}
+		int coef = dali.comparePrice(pair.dali) + picasso.comparePrice(pair.picasso);
+		return coef == 0 ? 0 : coef / Math.abs(coef);
 	}
 
 	@Override
