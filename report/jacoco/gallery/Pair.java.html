@@ -2,38 +2,38 @@
 
 import java.util.Objects;
 
-<span class="nc" id="L5">public record Pair(Painting picasso, Painting dali) implements Comparable&lt;Pair&gt; {</span>
+<span class="pc" id="L5">public record Pair(Painting picasso, Painting dali) implements Comparable&lt;Pair&gt; {</span>
 	public final Pair validate() {
-<span class="nc" id="L7">		picasso.validate();</span>
-<span class="nc" id="L8">		dali.validate();</span>
-<span class="nc bnc" id="L9" title="All 2 branches missed.">		if (!(picasso.compareSize(dali) &lt; 0)) {</span>
-<span class="nc" id="L10">			throw new IllegalArgumentException(&quot;The Dali behind has to be taller than the Picasso in front&quot;);</span>
+<span class="fc" id="L7">		picasso.validate();</span>
+<span class="fc" id="L8">		dali.validate();</span>
+<span class="fc bfc" id="L9" title="All 2 branches covered.">		if (!(picasso.compareSize(dali) &lt; 0)) {</span>
+<span class="fc" id="L10">			throw new IllegalArgumentException(&quot;The Dali behind has to be taller than the Picasso in front&quot;);</span>
 		}
-<span class="nc" id="L12">		return this;</span>
+<span class="fc" id="L12">		return this;</span>
 	}
 
 	private Pair validate(Pair pair) {
-<span class="nc" id="L16">		Objects.requireNonNull(pair, &quot;Pair cannot be null&quot;);</span>
-<span class="nc" id="L17">		return pair.validate();</span>
+<span class="fc" id="L16">		Objects.requireNonNull(pair, &quot;Pair cannot be null&quot;);</span>
+<span class="fc" id="L17">		return pair.validate();</span>
 	}
 
 	public boolean equals(Pair p) {
-<span class="nc bnc" id="L21" title="All 4 branches missed.">		return picasso.equals(p.picasso) &amp;&amp; dali.equals(p.dali);</span>
+<span class="fc bfc" id="L21" title="All 4 branches covered.">		return picasso.equals(p.picasso) &amp;&amp; dali.equals(p.dali);</span>
 	}
 
 	@Override
 	public int compareTo(Pair pair) {
-<span class="nc" id="L26">		validate(pair);</span>
+<span class="fc" id="L26">		validate(pair);</span>
 //		if (equals(pair)) {
 //			throw new IllegalArgumentException(&quot;Pair repetition&quot;);
 //		}
-<span class="nc" id="L30">		int coef = dali.comparePrice(pair.dali) + picasso.comparePrice(pair.picasso);</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">		return coef == 0 ? 0 : coef / Math.abs(coef);</span>
+<span class="fc" id="L30">		int coef = dali.comparePrice(pair.dali) + picasso.comparePrice(pair.picasso);</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">		return coef == 0 ? 0 : coef / Math.abs(coef);</span>
 	}
 
 	@Override
 	public String toString() {
-<span class="nc" id="L36">		return &quot;P&quot; + picasso.toString() + &quot; : D&quot; + dali.toString();</span>
+<span class="fc" id="L36">		return &quot;P&quot; + picasso.toString() + &quot; : D&quot; + dali.toString();</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
