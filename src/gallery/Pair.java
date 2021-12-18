@@ -21,6 +21,19 @@ public record Pair(Painting picasso, Painting dali) implements Comparable<Pair> 
 		return picasso.equals(p.picasso) && dali.equals(p.dali);
 	}
 
+	boolean validPair(Pair pair) {
+		try {
+			pair.validate();
+		} catch (IllegalArgumentException ignored){
+			return false;
+		}
+		return true;
+	}
+
+	boolean validPair() {
+		return validPair(this);
+	}
+
 	@Override
 	public int compareTo(Pair pair) {
 		validate(pair);
@@ -33,6 +46,6 @@ public record Pair(Painting picasso, Painting dali) implements Comparable<Pair> 
 
 	@Override
 	public String toString() {
-		return "P" + picasso.toString() + " : D" + dali.toString();
+		return "P" + picasso.toString() + ":D" + dali.toString();
 	}
 }

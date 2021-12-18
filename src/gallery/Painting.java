@@ -51,7 +51,7 @@ public record Painting(BigDecimal price, BigDecimal size) implements Comparable<
 	 */
 	@Override
 	public String toString() {
-		return "($" + price().toPlainString() + "," + size().toPlainString() + ")";
+		return "(" + price().toPlainString() + "," + size().toPlainString() + ")";
 	}
 
 	public boolean equals(Painting p) {

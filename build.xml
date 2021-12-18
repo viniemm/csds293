@@ -1,5 +1,5 @@
 
-<project name="Assignment 7" xmlns:jacoco="antlib:org.jacoco.ant">
+<project name="Assignment *" xmlns:jacoco="antlib:org.jacoco.ant">
     <!--   Directory with source files -->
     <property name="src.dir" value="src"/>
 

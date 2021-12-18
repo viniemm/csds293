@@ -102,7 +102,7 @@ public class PaintingTest {
 	@Test
 	public void testToString() throws Exception {
 		Painting p1 = new Painting(new BigDecimal(3), new BigDecimal(3));
-		assertEquals("($3,3)", p1.toString());
+		assertEquals("(3,3)", p1.toString());
 	}
 
 	/**

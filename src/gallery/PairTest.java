@@ -86,6 +86,6 @@ public class PairTest {
 		Painting p1 = new Painting(new BigDecimal(1), new BigDecimal(1));
 		Painting p2 = new Painting(new BigDecimal(2), new BigDecimal(2));
 		Pair pair = new Pair(p1, p2);
-		assertEquals("P($1,1) : D($2,2)", pair.toString());
+		assertEquals("P(1,1):D(2,2)", pair.toString());
 	}
 } 
